@@ -34,19 +34,51 @@ const claimres = [
   { value: 'ไม่อนุมัติ', label: 'ไม่อนุมัติ' },
   { value: 'รอการอนุมัติ', label: 'รอการอนุมัติ' },
 ];
+
+const shownum = [
+  { value: 10, label: '10' },
+  { value: 50, label: '50' },
+  { value: 100, label: '100' },
+];
 class RegularTables extends React.Component {
 
   // for dmgtype option
   state = {
     selectedOption: 'รอการอนุมัติ',
+    shownumOp : null
   };
   handleChange = ({selectedOption}) => {
     this.setState({ selectedOption });
     console.log(`Option selected:`, selectedOption);
   };
 
+  ShownumhandleChange = ({shownumOp}) => {
+    this.setState({ shownumOp });
+    console.log(`Option selected:`, shownumOp);
+  };
+
   render() {
     const { selectedOption } = this.state;
+    const { shownumOp } = this.state;
+
+    const customStyles = {
+      menu: (provided, state) => ({
+        ...provided,
+        width: state.selectProps.width,
+        color: state.selectProps.menuColor,
+      }),
+    
+      control: (_, { selectProps: { width }}) => ({
+        width: width
+      }),
+    
+      singleValue: (provided, state) => {
+        const opacity = state.isDisabled ? 0.5 : 1;
+        const transition = 'opacity 300ms';
+    
+        return { ...provided, opacity, transition };
+      }
+    }
     return (
       <>
         <div className="content">
@@ -186,9 +218,41 @@ class RegularTables extends React.Component {
                   <CardTitle tag="h4">คำร้อง</CardTitle>
                 </CardHeader>
                 <CardBody className="table-full-width table-hover">
-                  <Table responsive>
-                    <thead>
+                <Table>
+                  <tr>
+                <td md="1">show
+               {<Select
+                          styles = {customStyles}
+                          value={shownumOp}
+                          onChange={this.ShownumhandleChange}
+                          options={shownum}
+                          isSearchable={false}
+                          />}
+                          entries
+                          </td> 
+                    </tr>
+                </Table>
+                {/* <span>show {<Select
+                          styles = {customStyles}
+                          value={shownumOp}
+                          onChange={this.ShownumhandleChange}
+                          options={shownum}
+                          isSearchable={false}
+                          />} entries</span> */}
+                  <Table responsive striped bordered>
+                    {/* <thead>
                       <tr>
+                        <th>show {<Select
+                          value={shownumOp}
+                          onChange={this.ShownumhandleChange}
+                          options={shownum}
+                          isSearchable={false}
+                          />} entries</th>
+                        <th>eiei</th>
+                      </tr>
+                    </thead> */}
+                    <tbody>
+                    <tr>
                         <th>ลำดับ</th>
                         <th>ชื่อ-สกุล</th>
                         <th>เบอร์โทร</th>
@@ -198,9 +262,7 @@ class RegularTables extends React.Component {
                         <th>ผลการตรวจสอบ</th>
                         <th className="text-right">ดูข้อมูล</th>
                       </tr>
-                    </thead>
-                    <tbody>
-                      <tr className="table-success">
+                      <tr>
                         <td>1</td>
                         <td>เกิดด มีผล</td>
                         <td>0855152525</td>
@@ -243,7 +305,7 @@ class RegularTables extends React.Component {
                     </NavLink>
                         </td>
                       </tr>
-                      <tr className="table-info">
+                      <tr>
                       <td>3</td>
                         <td>ไก่ แจ้</td>
                         <td>0595959403</td>
@@ -285,7 +347,7 @@ class RegularTables extends React.Component {
                     </NavLink>
                         </td>
                       </tr>
-                      <tr className="table-danger">
+                      <tr>
                       <td>5</td>
                         <td>องอาจ ชาติเจริญ</td>
                         <td>0812929292</td>
@@ -327,7 +389,7 @@ class RegularTables extends React.Component {
                     </NavLink>
                         </td>
                       </tr>
-                      <tr className="table-warning">
+                      <tr >
                       <td>7</td>
                         <td>เสี่ยโอเลี้ยง สิบบาท</td>
                         <td>0878594943</td>
