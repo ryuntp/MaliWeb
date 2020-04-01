@@ -30,8 +30,13 @@ import {
   FormGroup,
   Label,
   Input,
-  FormText
+  FormText,
+  InputGroupText
 } from "reactstrap";
+
+import { Tab } from "semantic-ui-react";
+
+// const TabExampleBasicAll = () => <Tab panes={panes} renderActiveOnly={false} />;
 
 const claimres = [
   { value: "อนุมัติ", label: "อนุมัติ" },
@@ -44,12 +49,14 @@ const shownum = [
   { value: 50, label: "50" },
   { value: 100, label: "100" }
 ];
-class RegularTables extends React.Component {
-  // for dmgtype option
+
+export default class RegularTables extends React.Component {
+  // for status option
   state = {
     selectedOption: "รอการอนุมัติ",
     shownumOp: 10
   };
+
   handleChange = ({ selectedOption }) => {
     this.setState({ selectedOption });
     console.log(`Option selected:`, selectedOption);
@@ -59,11 +66,240 @@ class RegularTables extends React.Component {
     this.setState({ shownumOp });
     console.log(`Option selected:`, shownumOp);
   };
-
   render() {
     const { selectedOption } = this.state;
     const { shownumOp } = this.state;
+    const panes = [
+      {
+        menuItem: "Tab 1",
+        render: () => (
+          <Tab.Pane>
+            <div>
+              <span></span>
+              <Table responsive>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td className="text-right">show</td>
+                  <td>
+                    {
+                      <Select
+                        placeholder={10}
+                        value={shownumOp}
+                        onChange={this.ShownumhandleChange}
+                        options={shownum}
+                        isSearchable={false}
+                      />
+                    }
+                  </td>
+                  <td>entries</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td className="text-right">search</td>
+                  <td>
+                    {
+                      <Form inline>
+                        <FormGroup>
+                          <Input
+                            className="rounded-pill"
+                            alt="150x75"
+                            type="search"
+                            name="search"
+                            id="exampleSearch"
+                            placeholder="search placeholder"
+                          />
+                        </FormGroup>
+                      </Form>
+                    }
+                  </td>
+                </tr>
+              </Table>
 
+              <Table responsive striped bordered>
+                <tbody>
+                  <tr>
+                    <th>ลำดับ</th>
+                    <th>ชื่อ-สกุล</th>
+                    <th>เบอร์โทร</th>
+                    <th>วันที่ส่งคำร้อง</th>
+                    <th>ประเภทภัย</th>
+                    <th>จังหวัด</th>
+                    <th>ผลการตรวจสอบ</th>
+                    <th className="text-right">ดูข้อมูล</th>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>เกิดด มีผล</td>
+                    <td>0855152525</td>
+                    <td>23/4/62</td>
+                    <td>ภัยแล้ง</td>
+                    <td>ยะลา</td>
+                    <td>
+                      <Select
+                        value={selectedOption}
+                        onChange={this.handleChange}
+                        options={claimres}
+                        isSearchable={false}
+                        placeholder={"รอการอนุมัติ"}
+                      />
+                    </td>
+                    <td className="text-right">
+                      <NavLink to="/admin/dashboard" activeClassName="">
+                        {/* <span className="sidebar-mini-icon">S</span> */}
+                        <span>เรียกดูข้อมูล</span>
+                      </NavLink>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>หนู อู้หู</td>
+                    <td>0834443098</td>
+                    <td>25/4/62</td>
+                    <td>ภัยแล้ง</td>
+                    <td>ตรัง</td>
+                    <td>
+                      <Select
+                        value={selectedOption}
+                        onChange={this.handleChange}
+                        options={claimres}
+                        isSearchable={false}
+                        placeholder={"รอการอนุมัติ"}
+                      />
+                    </td>
+                    <td className="text-right">
+                      <NavLink to="/admin/dashboard" activeClassName="">
+                        {/* <span className="sidebar-mini-icon">S</span> */}
+                        <span>เรียกดูข้อมูล</span>
+                      </NavLink>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>ไก่ แจ้</td>
+                    <td>0595959403</td>
+                    <td>21/5/62</td>
+                    <td>ภัยแล้ง</td>
+                    <td>สตูล</td>
+                    <td>
+                      <Select
+                        value={selectedOption}
+                        onChange={this.handleChange}
+                        options={claimres}
+                        isSearchable={false}
+                        placeholder={"รอการอนุมัติ"}
+                      />
+                    </td>
+                    <td className="text-right">
+                      <NavLink to="/admin/dashboard" activeClassName="">
+                        {/* <span className="sidebar-mini-icon">S</span> */}
+                        <span>เรียกดูข้อมูล</span>
+                      </NavLink>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>ไว้ลาย สมชาย</td>
+                    <td>0850505054</td>
+                    <td>01/4/62</td>
+                    <td>ภัยแล้ง</td>
+                    <td>เชียงใหม่</td>
+                    <td>
+                      <Select
+                        value={selectedOption}
+                        onChange={this.handleChange}
+                        options={claimres}
+                        isSearchable={false}
+                        placeholder={"รอการอนุมัติ"}
+                      />
+                    </td>
+                    <td className="text-right">
+                      <NavLink to="/admin/dashboard" activeClassName="">
+                        {/* <span className="sidebar-mini-icon">S</span> */}
+                        <span>เรียกดูข้อมูล</span>
+                      </NavLink>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>องอาจ ชาติเจริญ</td>
+                    <td>0812929292</td>
+                    <td>05/4/62</td>
+                    <td>ภัยแล้ง</td>
+                    <td>กรุงเทพ</td>
+                    <td>
+                      <Select
+                        value={selectedOption}
+                        onChange={this.handleChange}
+                        options={claimres}
+                        isSearchable={false}
+                        placeholder={"รอการอนุมัติ"}
+                      />
+                    </td>
+                    <td className="text-right">
+                      <NavLink to="/admin/dashboard" activeClassName="">
+                        {/* <span className="sidebar-mini-icon">S</span> */}
+                        <span>เรียกดูข้อมูล</span>
+                      </NavLink>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>โอ โหสิบ</td>
+                    <td>0809393933</td>
+                    <td>12/6/62</td>
+                    <td>ภัยแล้ง</td>
+                    <td>อยุธยา</td>
+                    <td>
+                      <Select
+                        value={selectedOption}
+                        onChange={this.handleChange}
+                        options={claimres}
+                        isSearchable={false}
+                        placeholder={"รอการอนุมัติ"}
+                      />
+                    </td>
+                    <td className="text-right">
+                      <NavLink to="/admin/dashboard" activeClassName="">
+                        {/* <span className="sidebar-mini-icon">S</span> */}
+                        <span>เรียกดูข้อมูล</span>
+                      </NavLink>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td>เสี่ยโอเลี้ยง สิบบาท</td>
+                    <td>0878594943</td>
+                    <td>29/4/62</td>
+                    <td>น้ำท่วม</td>
+                    <td>ชลบุรี</td>
+                    <td>
+                      <Select
+                        value={selectedOption}
+                        onChange={this.handleChange}
+                        options={claimres}
+                        isSearchable={false}
+                        placeholder={"รอการอนุมัติ"}
+                      />
+                    </td>
+                    <td className="text-right">
+                      <NavLink to="/admin/dashboard" activeClassName="">
+                        {/* <span className="sidebar-mini-icon">S</span> */}
+                        <span>เรียกดูข้อมูล</span>
+                      </NavLink>
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+            </div>
+          </Tab.Pane>
+        )
+      },
+      { menuItem: "Tab 2", render: () => <Tab.Pane>Tab 2 Content</Tab.Pane> },
+      { menuItem: "Tab 3", render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> }
+    ];
     return (
       <>
         <div className="content">
@@ -74,224 +310,7 @@ class RegularTables extends React.Component {
                   <CardTitle tag="h4">คำร้อง</CardTitle>
                 </CardHeader>
                 <CardBody className="table-full-width table-hover">
-                  <Table responsive>
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <td className="text-right">show</td>
-                      <td>
-                        {
-                          <Select
-                            defaultValue={this.state.shownumOp}
-                            value={shownumOp}
-                            onChange={this.ShownumhandleChange}
-                            options={shownum}
-                            isSearchable={false}
-                          />
-                        }
-                      </td>
-                      <td>entries</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td className="text-right">search</td>
-                      <td>
-                        {
-                          <Form inline>
-                            <FormGroup>
-                              <Input
-                                className="rounded-pill"
-                                alt="150x75"
-                                type="search"
-                                name="search"
-                                id="exampleSearch"
-                                placeholder="search placeholder"
-                              />
-                            </FormGroup>
-                          </Form>
-                        }
-                      </td>
-                    </tr>
-                  </Table>
-
-                  <Table responsive striped bordered>
-                    <tbody>
-                      <tr>
-                        <th>ลำดับ</th>
-                        <th>ชื่อ-สกุล</th>
-                        <th>เบอร์โทร</th>
-                        <th>วันที่ส่งคำร้อง</th>
-                        <th>ประเภทภัย</th>
-                        <th>จังหวัด</th>
-                        <th>ผลการตรวจสอบ</th>
-                        <th className="text-right">ดูข้อมูล</th>
-                      </tr>
-                      <tr>
-                        <td>1</td>
-                        <td>เกิดด มีผล</td>
-                        <td>0855152525</td>
-                        <td>23/4/62</td>
-                        <td>ภัยแล้ง</td>
-                        <td>ยะลา</td>
-                        <td>
-                          <Select
-                            value={selectedOption}
-                            onChange={this.handleChange}
-                            options={claimres}
-                            isSearchable={false}
-                            placeholder={"เลือก"}
-                            InputValue={"รอการอนุมัติ"}
-                          />
-                        </td>
-                        <td className="text-right">
-                          <NavLink to="/admin/dashboard" activeClassName="">
-                            {/* <span className="sidebar-mini-icon">S</span> */}
-                            <span>เรียกดูข้อมูล</span>
-                          </NavLink>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>หนู อู้หู</td>
-                        <td>0834443098</td>
-                        <td>25/4/62</td>
-                        <td>ภัยแล้ง</td>
-                        <td>ตรัง</td>
-                        <td>
-                          <Select
-                            value={selectedOption}
-                            onChange={this.handleChange}
-                            options={claimres}
-                            isSearchable={false}
-                            placeholder={"เลือก"}
-                          />
-                        </td>
-                        <td className="text-right">
-                          <NavLink to="/admin/dashboard" activeClassName="">
-                            {/* <span className="sidebar-mini-icon">S</span> */}
-                            <span>เรียกดูข้อมูล</span>
-                          </NavLink>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>ไก่ แจ้</td>
-                        <td>0595959403</td>
-                        <td>21/5/62</td>
-                        <td>ภัยแล้ง</td>
-                        <td>สตูล</td>
-                        <td>
-                          <Select
-                            value={selectedOption}
-                            onChange={this.handleChange}
-                            options={claimres}
-                            isSearchable={false}
-                            placeholder={"เลือก"}
-                          />
-                        </td>
-                        <td className="text-right">
-                          <NavLink to="/admin/dashboard" activeClassName="">
-                            {/* <span className="sidebar-mini-icon">S</span> */}
-                            <span>เรียกดูข้อมูล</span>
-                          </NavLink>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>ไว้ลาย สมชาย</td>
-                        <td>0850505054</td>
-                        <td>01/4/62</td>
-                        <td>ภัยแล้ง</td>
-                        <td>เชียงใหม่</td>
-                        <td>
-                          <Select
-                            value={selectedOption}
-                            onChange={this.handleChange}
-                            options={claimres}
-                            isSearchable={false}
-                            placeholder={"เลือก"}
-                          />
-                        </td>
-                        <td className="text-right">
-                          <NavLink to="/admin/dashboard" activeClassName="">
-                            {/* <span className="sidebar-mini-icon">S</span> */}
-                            <span>เรียกดูข้อมูล</span>
-                          </NavLink>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>5</td>
-                        <td>องอาจ ชาติเจริญ</td>
-                        <td>0812929292</td>
-                        <td>05/4/62</td>
-                        <td>ภัยแล้ง</td>
-                        <td>กรุงเทพ</td>
-                        <td>
-                          <Select
-                            value={selectedOption}
-                            onChange={this.handleChange}
-                            options={claimres}
-                            isSearchable={false}
-                            placeholder={"เลือก"}
-                          />
-                        </td>
-                        <td className="text-right">
-                          <NavLink to="/admin/dashboard" activeClassName="">
-                            {/* <span className="sidebar-mini-icon">S</span> */}
-                            <span>เรียกดูข้อมูล</span>
-                          </NavLink>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>6</td>
-                        <td>โอ โหสิบ</td>
-                        <td>0809393933</td>
-                        <td>12/6/62</td>
-                        <td>ภัยแล้ง</td>
-                        <td>อยุธยา</td>
-                        <td>
-                          <Select
-                            value={selectedOption}
-                            onChange={this.handleChange}
-                            options={claimres}
-                            isSearchable={false}
-                            placeholder={"เลือก"}
-                          />
-                        </td>
-                        <td className="text-right">
-                          <NavLink to="/admin/dashboard" activeClassName="">
-                            {/* <span className="sidebar-mini-icon">S</span> */}
-                            <span>เรียกดูข้อมูล</span>
-                          </NavLink>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>7</td>
-                        <td>เสี่ยโอเลี้ยง สิบบาท</td>
-                        <td>0878594943</td>
-                        <td>29/4/62</td>
-                        <td>น้ำท่วม</td>
-                        <td>ชลบุรี</td>
-                        <td>
-                          <Select
-                            value={selectedOption}
-                            onChange={this.handleChange}
-                            options={claimres}
-                            isSearchable={false}
-                            placeholder={"เลือก"}
-                          />
-                        </td>
-                        <td className="text-right">
-                          <NavLink to="/admin/dashboard" activeClassName="">
-                            {/* <span className="sidebar-mini-icon">S</span> */}
-                            <span>เรียกดูข้อมูล</span>
-                          </NavLink>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </Table>
+                  <Tab panes={panes} />
                 </CardBody>
               </Card>
             </Col>
@@ -301,5 +320,3 @@ class RegularTables extends React.Component {
     );
   }
 }
-
-export default RegularTables;

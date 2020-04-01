@@ -42,7 +42,7 @@ class RegularForms extends React.Component {
             <Col md="6">
               <Card>
                 <CardHeader>
-                  <CardTitle tag="h4">Stacked Form</CardTitle>
+                  <CardTitle tag="h4">Stackedd Form</CardTitle>
                 </CardHeader>
                 <CardBody>
                   <Form action="#" method="#">
