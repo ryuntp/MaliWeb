@@ -20,7 +20,11 @@ import "bootstrap/dist/css/bootstrap.css";
 import "assets/scss/paper-dashboard.scss?v=1.1.0";
 import "assets/demo/demo.css";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
-import 'semantic-ui-css/semantic.min.css'
+
+//ryu
+import 'semantic-ui-css/semantic.min.css';
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+
 const hist = createBrowserHistory();
 
 ReactDOM.render(

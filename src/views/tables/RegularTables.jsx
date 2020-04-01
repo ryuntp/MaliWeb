@@ -36,7 +36,7 @@ import {
 
 import { Tab } from "semantic-ui-react";
 
-// const TabExampleBasicAll = () => <Tab panes={panes} renderActiveOnly={false} />;
+import BootstrapTable from "react-bootstrap-table-next";
 
 const claimres = [
   { value: "อนุมัติ", label: "อนุมัติ" },
@@ -69,9 +69,29 @@ export default class RegularTables extends React.Component {
   render() {
     const { selectedOption } = this.state;
     const { shownumOp } = this.state;
+    const products = [
+      { id: 3, name: "pen", price: 20 },
+      { id: 1, name: "pencil", price: 15 }
+    ];
+    const columns = [
+      {
+        dataField: "id",
+        text: "Product ID",
+        sort: true
+      },
+      {
+        dataField: "name",
+        text: "Product Name"
+      },
+      {
+        dataField: "price",
+        text: "Product Price"
+      }
+    ];
+
     const panes = [
       {
-        menuItem: "Tab 1",
+        menuItem: "คำร้องขอทั้งหมด(7)",
         render: () => (
           <Tab.Pane>
             <div>
@@ -297,8 +317,23 @@ export default class RegularTables extends React.Component {
           </Tab.Pane>
         )
       },
-      { menuItem: "Tab 2", render: () => <Tab.Pane>Tab 2 Content</Tab.Pane> },
-      { menuItem: "Tab 3", render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> }
+      {
+        menuItem: "คำร้องที่ผ่านการอนุมัติ(3)",
+        render: () => (
+          <Tab.Pane>
+            {" "}
+            <BootstrapTable keyField="id" data={products} columns={columns} />
+          </Tab.Pane>
+        )
+      },
+      {
+        menuItem: "คำร้องที่ไม่ผ่านการอนุมัติ(1)",
+        render: () => <Tab.Pane>Tab 3 Content</Tab.Pane>
+      },
+      {
+        menuItem: "คำร้องที่รอการอนุมัติ(3)",
+        render: () => <Tab.Pane>Tab 3 Content</Tab.Pane>
+      }
     ];
     return (
       <>
