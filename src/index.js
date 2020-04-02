@@ -24,6 +24,8 @@ import "perfect-scrollbar/css/perfect-scrollbar.css";
 //ryu
 import 'semantic-ui-css/semantic.min.css';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
+import 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min.css';
 
 const hist = createBrowserHistory();
 

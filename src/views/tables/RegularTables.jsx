@@ -1,19 +1,3 @@
-/*!
-
-=========================================================
-* Paper Dashboard PRO React - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-pro-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 import Select from "react-select";
 import { NavLink } from "react-router-dom";
@@ -31,13 +15,17 @@ import {
   Label,
   Input,
   FormText,
-  InputGroupText
+  InputGroupText,
+  InputGroupAddon,
+  InputGroup
 } from "reactstrap";
 
 import { Tab } from "semantic-ui-react";
 
 import BootstrapTable from "react-bootstrap-table-next";
+import paginationFactory from "react-bootstrap-table2-paginator";
 
+import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 const claimres = [
   { value: "อนุมัติ", label: "อนุมัติ" },
   { value: "ไม่อนุมัติ", label: "ไม่อนุมัติ" },
@@ -50,45 +38,460 @@ const shownum = [
   { value: 100, label: "100" }
 ];
 
+const completeInfo = [
+  { value: "ข้อมูลครบ", label: "ข้อมูลครบ" },
+  { value: "ข้อมูลไม่ครบ", label: "ข้อมูลไม่ครบ" },
+  { value: "รอการอนุมัติ", label: "รอการอนุมัติ" }
+];
+
 export default class RegularTables extends React.Component {
   // for status option
   state = {
     selectedOption: "รอการอนุมัติ",
-    shownumOp: 10
+    shownumOp: 10,
+    completeInf: "รอการอนุมัติ"
   };
 
   handleChange = ({ selectedOption }) => {
     this.setState({ selectedOption });
-    console.log(`Option selected:`, selectedOption);
+    // console.log(`Option selected:`, selectedOption);
   };
 
   ShownumhandleChange = ({ shownumOp }) => {
     this.setState({ shownumOp });
-    console.log(`Option selected:`, shownumOp);
+    // console.log(`Option selected:`, shownumOp);
+  };
+
+  CompleteInfohandleChange = ({ completeInf }) => {
+    this.setState({ completeInf });
+    // console.log(`Option selected:`, shownumOp);
   };
   render() {
     const { selectedOption } = this.state;
     const { shownumOp } = this.state;
+    const { completeInf } = this.state;
+
+    const { SearchBar } = Search;
+
+    // const pagina = {
+
+    // };
+
     const products = [
-      { id: 3, name: "pen", price: 20 },
-      { id: 1, name: "pencil", price: 15 }
+      {
+        id: 3,
+        name: "ryuntp",
+        tel: "0873269511",
+        email: "ryu_r@hotmail.com",
+        dmgType: "แล้ง",
+        province: "กทม",
+        result: (
+          <Select
+            value={selectedOption}
+            onChange={this.handleChange}
+            options={claimres}
+            isSearchable={false}
+            placeholder={"เลือก"}
+          />
+        ),
+        rightInfo: (
+          <Select
+            value={completeInf}
+            onChange={this.CompleteInfohandleChange}
+            options={completeInfo}
+            isSearchable={false}
+            placeholder={"เลือก"}
+          />
+        ),
+        details: (
+          <NavLink to="/admin/dashboard" activeClassName="">
+            <span>เรียกดูข้อมูล</span>
+          </NavLink>
+        )
+      },
+      {
+        id: 3,
+        name: "ryuntp",
+        tel: "0873269511",
+        email: "ryu_r@hotmail.com",
+        dmgType: "แล้ง",
+        province: "กทม",
+        result: (
+          <Select
+            value={selectedOption}
+            onChange={this.handleChange}
+            options={claimres}
+            isSearchable={false}
+            placeholder={"เลือก"}
+          />
+        ),
+        rightInfo: (
+          <Select
+            value={completeInf}
+            onChange={this.CompleteInfohandleChange}
+            options={completeInfo}
+            isSearchable={false}
+            placeholder={"เลือก"}
+          />
+        ),
+        details: (
+          <NavLink to="/admin/dashboard" activeClassName="">
+            <span>เรียกดูข้อมูล</span>
+          </NavLink>
+        )
+      },
+      {
+        id: 3,
+        name: "ryuntp",
+        tel: "0873269511",
+        email: "ryu_r@hotmail.com",
+        dmgType: "แล้ง",
+        province: "กทม",
+        result: (
+          <Select
+            value={selectedOption}
+            onChange={this.handleChange}
+            options={claimres}
+            isSearchable={false}
+            placeholder={"เลือก"}
+          />
+        ),
+        rightInfo: (
+          <Select
+            value={completeInf}
+            onChange={this.CompleteInfohandleChange}
+            options={completeInfo}
+            isSearchable={false}
+            placeholder={"เลือก"}
+          />
+        ),
+        details: (
+          <NavLink to="/admin/dashboard" activeClassName="">
+            <span>เรียกดูข้อมูล</span>
+          </NavLink>
+        )
+      },
+      {
+        id: 3,
+        name: "ryuntp",
+        tel: "0873269511",
+        email: "ryu_r@hotmail.com",
+        dmgType: "แล้ง",
+        province: "กทม",
+        result: (
+          <Select
+            value={selectedOption}
+            onChange={this.handleChange}
+            options={claimres}
+            isSearchable={false}
+            placeholder={"เลือก"}
+          />
+        ),
+        rightInfo: (
+          <Select
+            value={completeInf}
+            onChange={this.CompleteInfohandleChange}
+            options={completeInfo}
+            isSearchable={false}
+            placeholder={"เลือก"}
+          />
+        ),
+        details: (
+          <NavLink to="/admin/dashboard" activeClassName="">
+            <span>เรียกดูข้อมูล</span>
+          </NavLink>
+        )
+      },
+      {
+        id: 3,
+        name: "ryuntp",
+        tel: "0873269511",
+        email: "ryu_r@hotmail.com",
+        dmgType: "แล้ง",
+        province: "กทม",
+        result: (
+          <Select
+            value={selectedOption}
+            onChange={this.handleChange}
+            options={claimres}
+            isSearchable={false}
+            placeholder={"เลือก"}
+          />
+        ),
+        rightInfo: (
+          <Select
+            value={completeInf}
+            onChange={this.CompleteInfohandleChange}
+            options={completeInfo}
+            isSearchable={false}
+            placeholder={"เลือก"}
+          />
+        ),
+        details: (
+          <NavLink to="/admin/dashboard" activeClassName="">
+            <span>เรียกดูข้อมูล</span>
+          </NavLink>
+        )
+      },
+      {
+        id: 3,
+        name: "ryuntp",
+        tel: "0873269511",
+        email: "ryu_r@hotmail.com",
+        dmgType: "แล้ง",
+        province: "กทม",
+        result: (
+          <Select
+            value={selectedOption}
+            onChange={this.handleChange}
+            options={claimres}
+            isSearchable={false}
+            placeholder={"เลือก"}
+          />
+        ),
+        rightInfo: (
+          <Select
+            value={completeInf}
+            onChange={this.CompleteInfohandleChange}
+            options={completeInfo}
+            isSearchable={false}
+            placeholder={"เลือก"}
+          />
+        ),
+        details: (
+          <NavLink to="/admin/dashboard" activeClassName="">
+            <span>เรียกดูข้อมูล</span>
+          </NavLink>
+        )
+      },
+      {
+        id: 3,
+        name: "ryuntp",
+        tel: "0873269511",
+        email: "ryu_r@hotmail.com",
+        dmgType: "แล้ง",
+        province: "กทม",
+        result: (
+          <Select
+            value={selectedOption}
+            onChange={this.handleChange}
+            options={claimres}
+            isSearchable={false}
+            placeholder={"เลือก"}
+          />
+        ),
+        rightInfo: (
+          <Select
+            value={completeInf}
+            onChange={this.CompleteInfohandleChange}
+            options={completeInfo}
+            isSearchable={false}
+            placeholder={"เลือก"}
+          />
+        ),
+        details: (
+          <NavLink to="/admin/dashboard" activeClassName="">
+            <span>เรียกดูข้อมูล</span>
+          </NavLink>
+        )
+      },
+      {
+        id: 3,
+        name: "ryuntp",
+        tel: "0873269511",
+        email: "ryu_r@hotmail.com",
+        dmgType: "แล้ง",
+        province: "กทม",
+        result: (
+          <Select
+            value={selectedOption}
+            onChange={this.handleChange}
+            options={claimres}
+            isSearchable={false}
+            placeholder={"เลือก"}
+          />
+        ),
+        rightInfo: (
+          <Select
+            value={completeInf}
+            onChange={this.CompleteInfohandleChange}
+            options={completeInfo}
+            isSearchable={false}
+            placeholder={"เลือก"}
+          />
+        ),
+        details: (
+          <NavLink to="/admin/dashboard" activeClassName="">
+            <span>เรียกดูข้อมูล</span>
+          </NavLink>
+        )
+      },
+      {
+        id: 3,
+        name: "ryuntp",
+        tel: "0873269511",
+        email: "ryu_r@hotmail.com",
+        dmgType: "แล้ง",
+        province: "กทม",
+        result: (
+          <Select
+            value={selectedOption}
+            onChange={this.handleChange}
+            options={claimres}
+            isSearchable={false}
+            placeholder={"เลือก"}
+          />
+        ),
+        rightInfo: (
+          <Select
+            value={completeInf}
+            onChange={this.CompleteInfohandleChange}
+            options={completeInfo}
+            isSearchable={false}
+            placeholder={"เลือก"}
+          />
+        ),
+        details: (
+          <NavLink to="/admin/dashboard" activeClassName="">
+            <span>เรียกดูข้อมูล</span>
+          </NavLink>
+        )
+      },
+      {
+        id: 3,
+        name: "ryuntp",
+        tel: "0873269511",
+        email: "ryu_r@hotmail.com",
+        dmgType: "แล้ง",
+        province: "กทม",
+        result: (
+          <Select
+            value={selectedOption}
+            onChange={this.handleChange}
+            options={claimres}
+            isSearchable={false}
+            placeholder={"เลือก"}
+          />
+        ),
+        rightInfo: (
+          <Select
+            value={completeInf}
+            onChange={this.CompleteInfohandleChange}
+            options={completeInfo}
+            isSearchable={false}
+            placeholder={"เลือก"}
+          />
+        ),
+        details: (
+          <NavLink to="/admin/dashboard" activeClassName="">
+            <span>เรียกดูข้อมูล</span>
+          </NavLink>
+        )
+      },
+      {
+        id: 3,
+        name: "วิชัย",
+        tel: "0983726354",
+        email: "wichai@hotmail.com",
+        dmgType: "ท่วม",
+        province: "สงขลา",
+        result: (
+          <Select
+            value={selectedOption}
+            onChange={this.handleChange}
+            options={claimres}
+            isSearchable={false}
+            placeholder={"เลือก"}
+          />
+        ),
+        rightInfo: (
+          <Select
+            value={completeInf}
+            onChange={this.CompleteInfohandleChange}
+            options={completeInfo}
+            isSearchable={false}
+            placeholder={"เลือก"}
+          />
+        ),
+        details: (
+          <NavLink to="/admin/dashboard" activeClassName="">
+            <span>เรียกดูข้อมูล</span>
+          </NavLink>
+        )
+      },
+      {
+        id: 1,
+        name: "euei",
+        tel: "0927461638",
+        email: "reuei1998@gmail.com",
+        dmgType: "แล้ง",
+        province: "อยุธยา",
+        result: (
+          <Select
+            value={selectedOption}
+            onChange={this.handleChange}
+            options={claimres}
+            isSearchable={false}
+            placeholder={"เลือก"}
+          />
+        ),
+        rightInfo: (
+          <Select
+            value={completeInf}
+            onChange={this.CompleteInfohandleChange}
+            options={completeInfo}
+            isSearchable={false}
+            placeholder={"เลือก"}
+          />
+        ),
+        details: (
+          <NavLink to="/admin/dashboard" activeClassName="">
+            <span>เรียกดูข้อมูล</span>
+          </NavLink>
+        )
+      }
     ];
     const columns = [
       {
         dataField: "id",
-        text: "Product ID",
-        sort: true
-      },
+        text: "ลำดับ",
+        sort: true,
+        style:{width: "5%"
+      }},
       {
         dataField: "name",
-        text: "Product Name"
+        text: "ชื่อ-สกุล"
       },
       {
-        dataField: "price",
-        text: "Product Price"
+        dataField: "tel",
+        text: "เบอร์โทร"
+      },
+      {
+        dataField: "email",
+        text: "อีเมล"
+      },
+      {
+        dataField: "dmgType",
+        text: "ประเภทภัย"
+      },
+      {
+        dataField: "province",
+        text: "จังหวัด"
+      },
+      {
+        dataField: "result",
+        text: "ผลการตรวจสอบ"
+      },
+      {
+        dataField: "rightInfo",
+        text: "ข้อมูลครบถ้วน"
+      },
+      {
+        dataField: "details",
+        text: "ดูข้อมูล"
       }
     ];
-
+    const searchStyle = { width: 250 }; // search bar style
     const panes = [
       {
         menuItem: "คำร้องขอทั้งหมด(7)",
@@ -322,7 +725,38 @@ export default class RegularTables extends React.Component {
         render: () => (
           <Tab.Pane>
             {" "}
-            <BootstrapTable keyField="id" data={products} columns={columns} />
+            <ToolkitProvider
+              keyField="id"
+              data={products}
+              columns={columns}
+              search
+            >
+              {props => (
+                <div>
+                  <InputGroupAddon addonType="append">
+                    <h4 style={{paddingRight:7}}> ค้นหาจากตาราง </h4>
+                    <i style={{paddingTop:3}}className="nc-icon nc-zoom-split" />
+                  </InputGroupAddon>
+                  <SearchBar style={searchStyle} {...props.searchProps} />
+
+                  <hr />
+                  <BootstrapTable
+                    striped
+                    pagination={paginationFactory()}
+                    {...props.baseProps}
+                  />
+                </div>
+              )}
+              {/* <BootstrapTable
+              responsive
+              striped
+              pagination={paginationFactory()}
+              keyField="id"
+              data={products}
+              columns={columns}
+              
+            /> */}
+            </ToolkitProvider>
           </Tab.Pane>
         )
       },
@@ -335,6 +769,7 @@ export default class RegularTables extends React.Component {
         render: () => <Tab.Pane>Tab 3 Content</Tab.Pane>
       }
     ];
+
     return (
       <>
         <div className="content">
