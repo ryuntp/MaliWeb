@@ -19,7 +19,7 @@ import {
   FormText,
   InputGroupText,
   InputGroupAddon,
-  InputGroup
+  InputGroup,
 } from "reactstrap";
 
 import { Tab } from "semantic-ui-react";
@@ -27,31 +27,218 @@ import { Tab } from "semantic-ui-react";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 
-import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
+import ToolkitProvider, {
+  Search,
+  CSVExport,
+} from "react-bootstrap-table2-toolkit";
 const claimres = [
   { value: "อนุมัติ", label: "อนุมัติ" },
   { value: "ไม่อนุมัติ", label: "ไม่อนุมัติ" },
-  { value: "รอการอนุมัติ", label: "รอการอนุมัติ" }
+  { value: "รอการอนุมัติ", label: "รอการอนุมัติ" },
 ];
 
 const shownum = [
   { value: 10, label: "10" },
   { value: 50, label: "50" },
-  { value: 100, label: "100" }
+  { value: 100, label: "100" },
 ];
 
 const completeInfo = [
   { value: "ข้อมูลครบ", label: "ข้อมูลครบ" },
   { value: "ข้อมูลไม่ครบ", label: "ข้อมูลไม่ครบ" },
-  { value: "รอการอนุมัติ", label: "รอการอนุมัติ" }
+  { value: "รอการอนุมัติ", label: "รอการอนุมัติ" },
 ];
+
+const { ExportCSVButton } = CSVExport;
 
 export default class RegularTables extends React.Component {
   // for status option
   state = {
     selectedOption: "รอการอนุมัติ",
     shownumOp: 10,
-    completeInf: "รอการอนุมัติ"
+    completeInf: "รอการอนุมัติ",
+    products: [
+      {
+        id: 993,
+        name: "ryuntp",
+        tel: "0873269511",
+        email: "ryu_r@hotmail.com",
+        dmgType: "แล้ง",
+        province: "กทม",
+        result: "รอการอนุมัติ",
+        rightInfo: "รอการอนุมัติ",
+        details: (
+          <NavLink to="/admin/dashboard" activeClassName="">
+            <span>เรียกดูข้อมูล</span>
+          </NavLink>
+        ),
+      },
+      {
+        id: 1,
+        name: "suthep",
+        tel: "0837272626",
+        email: "suthep@hotmail.com",
+        dmgType: "ท่วม",
+        province: "ฉะเชิงเทรา",
+        result: "รอการอนุมัติ",
+        rightInfo: "รอการอนุมัติ",
+        details: (
+          <NavLink to="/admin/dashboard" activeClassName="">
+            <span>เรียกดูข้อมูล</span>
+          </NavLink>
+        ),
+      },
+      {
+        id: 4,
+        name: "mali",
+        tel: "0855555555",
+        email: "mali@hotmail.com",
+        dmgType: "แล้ง",
+        province: "สงขลา",
+        result: "รอการอนุมัติ",
+        rightInfo: "รอการอนุมัติ",
+        details: (
+          <NavLink to="/admin/dashboard" activeClassName="">
+            <span>เรียกดูข้อมูล</span>
+          </NavLink>
+        ),
+      },
+      {
+        id: 7,
+        name: "boss",
+        tel: "0850493939",
+        email: "bossposeidon@hotmail.com",
+        dmgType: "แล้ง",
+        province: "ยะลา",
+        result: "รอการอนุมัติ",
+        rightInfo: "รอการอนุมัติ",
+        details: (
+          <NavLink to="/admin/dashboard" activeClassName="">
+            <span>เรียกดูข้อมูล</span>
+          </NavLink>
+        ),
+      },
+      {
+        id: 11,
+        name: "frong",
+        tel: "0859203918",
+        email: "frong@hotmail.com",
+        dmgType: "ท่วม",
+        province: "ประจวบ",
+        result: "รอการอนุมัติ",
+        rightInfo: "รอการอนุมัติ",
+        details: (
+          <NavLink to="/admin/dashboard" activeClassName="">
+            <span>เรียกดูข้อมูล</span>
+          </NavLink>
+        ),
+      },
+      {
+        id: 3,
+        name: "ice",
+        tel: "0823234242",
+        email: "ice@hotmail.com",
+        dmgType: "ท่วม",
+        province: "กทม",
+        result: "รอการอนุมัติ",
+        rightInfo: "รอการอนุมัติ",
+        details: (
+          <NavLink to="/admin/dashboard" activeClassName="">
+            <span>เรียกดูข้อมูล</span>
+          </NavLink>
+        ),
+      },
+      {
+        id: 2,
+        name: "ailada",
+        tel: "0983738282",
+        email: "woww@hotmail.com",
+        dmgType: "แล้ง",
+        province: "กทม",
+        result: "รอการอนุมัติ",
+        rightInfo: "รอการอนุมัติ",
+        details: (
+          <NavLink to="/admin/dashboard" activeClassName="">
+            <span>เรียกดูข้อมูล</span>
+          </NavLink>
+        ),
+      },
+      {
+        id: 8,
+        name: "bit",
+        tel: "0928382828",
+        email: "bit@hotmail.com",
+        dmgType: "แล้ง",
+        province: "สมุทรสาคร",
+        result: "รอการอนุมัติ",
+        rightInfo: "ข้อมูลไม่ครบ",
+        details: (
+          <NavLink to="/admin/dashboard" activeClassName="">
+            <span>เรียกดูข้อมูล</span>
+          </NavLink>
+        ),
+      },
+      {
+        id: 9,
+        name: "sawan",
+        tel: "0810202020",
+        email: "sawan@hotmail.com",
+        dmgType: "แล้ง",
+        province: "กทม",
+        result: "รอการอนุมัติ",
+        rightInfo: "รอการอนุมัติ",
+        details: (
+          <NavLink to="/admin/dashboard" activeClassName="">
+            <span>เรียกดูข้อมูล</span>
+          </NavLink>
+        ),
+      },
+      {
+        id: 111,
+        name: "sun",
+        tel: "0869690929",
+        email: "sunlnw@hotmail.com",
+        dmgType: "ท่วม",
+        province: "กทม",
+        result: "รอการอนุมัติ",
+        rightInfo: "รอการอนุมัติ",
+        details: (
+          <NavLink to="/admin/dashboard" activeClassName="">
+            <span>เรียกดูข้อมูล</span>
+          </NavLink>
+        ),
+      },
+      {
+        id: 333,
+        name: "วิชัย",
+        tel: "0983726354",
+        email: "wichai@hotmail.com",
+        dmgType: "ท่วม",
+        province: "สงขลา",
+        result: "รอการอนุมัติ",
+        rightInfo: "รอการอนุมัติ",
+        details: (
+          <NavLink to="/admin/dashboard" activeClassName="">
+            <span>เรียกดูข้อมูล</span>
+          </NavLink>
+        ),
+      },
+      {
+        id: 123,
+        name: "euei",
+        tel: "0927461638",
+        email: "reuei1998@gmail.com",
+        dmgType: "แล้ง",
+        province: "อยุธยา",
+        result: "รอการอนุมัติ",
+        rightInfo: "รอการอนุมัติ",
+        details: (
+          <NavLink to="/admin/dashboard" activeClassName="">
+            <span>เรียกดูข้อมูล</span>
+          </NavLink>
+        ),
+      },
+    ],
   };
 
   handleChange = ({ selectedOption }) => {
@@ -70,7 +257,7 @@ export default class RegularTables extends React.Component {
     this.setState({ completeInf });
     console.log(`Option selected:`, completeInf);
   };
-
+  afterSave = () => {};
   render() {
     const { selectedOption } = this.state;
     const { shownumOp } = this.state;
@@ -78,214 +265,37 @@ export default class RegularTables extends React.Component {
 
     const { SearchBar } = Search;
 
-    const products = [
-      {
-        id: 993,
-        name: "ryuntp",
-        tel: "0873269511",
-        email: "ryu_r@hotmail.com",
-        dmgType: "แล้ง",
-        province: "กทม",
-        result: "รอการอนุมัติ",
-        rightInfo: "รอการอนุมัติ",
-        details: (
-          <NavLink to="/admin/dashboard" activeClassName="">
-            <span>เรียกดูข้อมูล</span>
-          </NavLink>
-        )
-      },
-      {
-        id: 1,
-        name: "suthep",
-        tel: "0837272626",
-        email: "suthep@hotmail.com",
-        dmgType: "ท่วม",
-        province: "ฉะเชิงเทรา",
-        result: "รอการอนุมัติ",
-        rightInfo: "รอการอนุมัติ",
-        details: (
-          <NavLink to="/admin/dashboard" activeClassName="">
-            <span>เรียกดูข้อมูล</span>
-          </NavLink>
-        )
-      },
-      {
-        id: 4,
-        name: "mali",
-        tel: "0855555555",
-        email: "mali@hotmail.com",
-        dmgType: "แล้ง",
-        province: "สงขลา",
-        result: "รอการอนุมัติ",
-        rightInfo: "รอการอนุมัติ",
-        details: (
-          <NavLink to="/admin/dashboard" activeClassName="">
-            <span>เรียกดูข้อมูล</span>
-          </NavLink>
-        )
-      },
-      {
-        id: 7,
-        name: "boss",
-        tel: "0850493939",
-        email: "bossposeidon@hotmail.com",
-        dmgType: "แล้ง",
-        province: "ยะลา",
-        result: "รอการอนุมัติ",
-        rightInfo: "รอการอนุมัติ",
-        details: (
-          <NavLink to="/admin/dashboard" activeClassName="">
-            <span>เรียกดูข้อมูล</span>
-          </NavLink>
-        )
-      },
-      {
-        id: 11,
-        name: "frong",
-        tel: "0859203918",
-        email: "frong@hotmail.com",
-        dmgType: "ท่วม",
-        province: "ประจวบ",
-        result: "รอการอนุมัติ",
-        rightInfo: "รอการอนุมัติ",
-        details: (
-          <NavLink to="/admin/dashboard" activeClassName="">
-            <span>เรียกดูข้อมูล</span>
-          </NavLink>
-        )
-      },
-      {
-        id: 3,
-        name: "ryuntp",
-        tel: "0873269511",
-        email: "ryu_r@hotmail.com",
-        dmgType: "แล้ง",
-        province: "กทม",
-        result: "รอการอนุมัติ",
-        rightInfo: "รอการอนุมัติ",
-        details: (
-          <NavLink to="/admin/dashboard" activeClassName="">
-            <span>เรียกดูข้อมูล</span>
-          </NavLink>
-        )
-      },
-      {
-        id: 2,
-        name: "ryuntp",
-        tel: "0873269511",
-        email: "ryu_r@hotmail.com",
-        dmgType: "แล้ง",
-        province: "กทม",
-        result: "รอการอนุมัติ",
-        rightInfo: "รอการอนุมัติ",
-        details: (
-          <NavLink to="/admin/dashboard" activeClassName="">
-            <span>เรียกดูข้อมูล</span>
-          </NavLink>
-        )
-      },
-      {
-        id: 8,
-        name: "ryuntp",
-        tel: "0873269511",
-        email: "ryu_r@hotmail.com",
-        dmgType: "แล้ง",
-        province: "กทม",
-        result: "รอการอนุมัติ",
-        rightInfo: "รอการอนุมัติ",
-        details: (
-          <NavLink to="/admin/dashboard" activeClassName="">
-            <span>เรียกดูข้อมูล</span>
-          </NavLink>
-        )
-      },
-      {
-        id: 9,
-        name: "ryuntp",
-        tel: "0873269511",
-        email: "ryu_r@hotmail.com",
-        dmgType: "แล้ง",
-        province: "กทม",
-        result: "รอการอนุมัติ",
-        rightInfo: "รอการอนุมัติ",
-        details: (
-          <NavLink to="/admin/dashboard" activeClassName="">
-            <span>เรียกดูข้อมูล</span>
-          </NavLink>
-        )
-      },
-      {
-        id: 111,
-        name: "ryuntp",
-        tel: "0873269511",
-        email: "ryu_r@hotmail.com",
-        dmgType: "แล้ง",
-        province: "กทม",
-        result: "รอการอนุมัติ",
-        rightInfo: "รอการอนุมัติ",
-        details: (
-          <NavLink to="/admin/dashboard" activeClassName="">
-            <span>เรียกดูข้อมูล</span>
-          </NavLink>
-        )
-      },
-      {
-        id: 333,
-        name: "วิชัย",
-        tel: "0983726354",
-        email: "wichai@hotmail.com",
-        dmgType: "ท่วม",
-        province: "สงขลา",
-        result: "รอการอนุมัติ",
-        rightInfo: "รอการอนุมัติ",
-        details: (
-          <NavLink to="/admin/dashboard" activeClassName="">
-            <span>เรียกดูข้อมูล</span>
-          </NavLink>
-        )
-      },
-      {
-        id: 123,
-        name: "euei",
-        tel: "0927461638",
-        email: "reuei1998@gmail.com",
-        dmgType: "แล้ง",
-        province: "อยุธยา",
-        result: "รอการอนุมัติ",
-        rightInfo: "รอการอนุมัติ",
-        details: (
-          <NavLink to="/admin/dashboard" activeClassName="">
-            <span>เรียกดูข้อมูล</span>
-          </NavLink>
-        )
-      }
-    ];
     const columns = [
       {
         dataField: "id",
         text: "ลำดับ",
         sort: true,
-        style: { width: "5%" }
+        style: { width: "5%" },
       },
       {
         dataField: "name",
-        text: "ชื่อ-สกุล"
+        text: "ชื่อ-สกุล",
+        editable: false,
       },
       {
         dataField: "tel",
-        text: "เบอร์โทร"
+        text: "เบอร์โทร",
+        editable: false,
       },
       {
         dataField: "email",
-        text: "อีเมล"
+        text: "อีเมล",
+        editable: false,
       },
       {
         dataField: "dmgType",
-        text: "ประเภทภัย"
+        text: "ประเภทภัย",
+        editable: false,
       },
       {
         dataField: "province",
-        text: "จังหวัด"
+        text: "จังหวัด",
+        editable: false,
       },
       {
         dataField: "result",
@@ -295,9 +305,9 @@ export default class RegularTables extends React.Component {
           options: [
             { value: "อนุมัติ", label: "อนุมัติ" },
             { value: "ไม่อนุมัติ", label: "ไม่อนุมัติ" },
-            { value: "รอการอนุมัติ", label: "รอการอนุมัติ" }
-          ]
-        }
+            { value: "รอการอนุมัติ", label: "รอการอนุมัติ" },
+          ],
+        },
       },
       {
         dataField: "rightInfo",
@@ -307,14 +317,15 @@ export default class RegularTables extends React.Component {
           options: [
             { value: "ข้อมูลครบ", label: "ข้อมูลครบ" },
             { value: "ข้อมูลไม่ครบ", label: "ข้อมูลไม่ครบ" },
-            { value: "รอการอนุมัติ", label: "รอการอนุมัติ" }
-          ]
-        }
+            { value: "รอการอนุมัติ", label: "รอการอนุมัติ" },
+          ],
+        },
       },
       {
         dataField: "details",
-        text: "ดูข้อมูล"
-      }
+        text: "ดูข้อมูล",
+        csvExport: false,
+      },
     ];
     // const rowStyle = row => {
     //   return {
@@ -323,7 +334,7 @@ export default class RegularTables extends React.Component {
     // };
     const rowStyle2 = (row, rowIndex) => {
       const style = {};
-      if ((row.rightInfo = "ข้อมูลไม่ครบ")) {
+      if (row.rightInfo == "ข้อมูลไม่ครบ") {
         style.backgroundColor = "#f08a84";
       }
       // if (row.id > 2) {
@@ -559,20 +570,25 @@ export default class RegularTables extends React.Component {
               </Table>
             </div>
           </Tab.Pane>
-        )
+        ),
       },
       {
-        menuItem: "คำร้องที่ผ่านการอนุมัติ" + "(" + products.length + ")",
+        menuItem:
+          "คำร้องที่ผ่านการอนุมัติ" + "(" + this.state.products.length + ")",
         render: () => (
           <Tab.Pane>
             {" "}
             <ToolkitProvider
               keyField="id"
-              data={products}
+              data={this.state.products}
               columns={columns}
               search
+              exportCSV={{
+                fileName: "custom.csv",
+                exportAll: false,
+              }}
             >
-              {props => (
+              {(props) => (
                 <div>
                   <InputGroupAddon addonType="append">
                     <h4 style={{ paddingRight: 7 }}> ค้นหาจากตาราง </h4>
@@ -585,17 +601,45 @@ export default class RegularTables extends React.Component {
 
                   <hr />
                   <BootstrapTable
-                    // rowStyle={rowStyle}
+                    rowStyle={rowStyle2}
+                    onDataSizeChange={this.handleDataChange}
                     striped
                     pagination={paginationFactory()}
                     cellEdit={cellEditFactory({
                       mode: "click",
-                      blurToSave: true
+                      blurToSave: true,
+                      afterSaveCell: (oldValue, newValue, row, column) => {
+                        // let ind = this.state.products.findIndex(function (
+                        //   item,
+                        //   i
+                        // ) {
+                        // console.log("=====> ", row.id, row.rightInfo);
+                        this.setState((prevState) => ({
+                          row: {
+                            ...prevState.row,
+                            [row.rightInfo]: newValue,
+                          },
+                        }));
+                        console.log("=====> ", row.id, row.rightInfo);
+                        // });
+                        // this.state.products.rightInfo[row] = newValue;
+                        // this.state.products[ind] = newValue;
+                        // console.log("old ==>", row.id);
+                        // this.setState({ rightInfo: newValue });
+                      },
                     })}
                     {...props.baseProps}
                   />
-
-                  <div>แสดงจากข้อมูล {products.length} แถว</div>
+                  <tr>
+                    <td>
+                      แสดงจากข้อมูลทั้งหมด {this.state.products.length} แถว
+                    </td>
+                    <td style={{ paddingLeft: 550, paddingBottom: 35 }}>
+                      <ExportCSVButton {...props.csvProps}>
+                        Export CSV
+                      </ExportCSVButton>
+                    </td>
+                  </tr>
                 </div>
               )}
               {/* <BootstrapTable
@@ -609,16 +653,16 @@ export default class RegularTables extends React.Component {
             /> */}
             </ToolkitProvider>
           </Tab.Pane>
-        )
+        ),
       },
       {
         menuItem: "คำร้องที่ไม่ผ่านการอนุมัติ(1)",
-        render: () => <Tab.Pane>Tab 3 Content</Tab.Pane>
+        render: () => <Tab.Pane>Tab 3 Content</Tab.Pane>,
       },
       {
         menuItem: "คำร้องที่รอการอนุมัติ(3)",
-        render: () => <Tab.Pane>Tab 3 Content</Tab.Pane>
-      }
+        render: () => <Tab.Pane>Tab 3 Content</Tab.Pane>,
+      },
     ];
 
     return (
@@ -628,7 +672,7 @@ export default class RegularTables extends React.Component {
             <Col md="12">
               <Card>
                 <CardHeader>
-                  <CardTitle tag="h2">คำร้อง</CardTitle>
+                  <CardTitle tag="h2">การยื่นขอความช่วยเหลือ</CardTitle>
                 </CardHeader>
                 <CardBody className="table-full-width table-hover">
                   <Tab panes={panes} />
